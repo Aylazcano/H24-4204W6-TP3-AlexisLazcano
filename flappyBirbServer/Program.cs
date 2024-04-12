@@ -1,4 +1,6 @@
 using flappyBirb_server.Data;
+using flappyBirb_server.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ builder.Services.AddDbContext<FlappyBirbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FlappyBirbContext"));
     options.UseLazyLoadingProxies();
 });
+builder.Services.AddIdentity<BirbUser, IdentityRole>().AddEntityFrameworkStores<FlappyBirbContext>();
 
 var app = builder.Build();
 
@@ -25,6 +28,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

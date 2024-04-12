@@ -9,6 +9,6 @@
         public bool isPublic { get; set; }
 
         // Propriétée de navigation
-        public virtual BirbUser BirbUser { get; set; }
+        //public virtual BirbUser BirbUser { get; set; }
     }
 }

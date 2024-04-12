@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using flappyBirb_server.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace flappyBirb_server.Data
 {
-    public class FlappyBirbContext : DbContext
+    public class FlappyBirbContext : IdentityDbContext<BirbUser>
     {
         public FlappyBirbContext(DbContextOptions<FlappyBirbContext> options)
             : base(options)
         {
         }
-        public DbSet<flappyBirb_server.Models.BirbUser> BirbUser { get; set; }
-        public DbSet<flappyBirb_server.Models.Score> Score { get; set; }
+        public DbSet<flappyBirb_server.Models.Score> Score { get; set; } = default!;
     }
 }

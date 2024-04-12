@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bZb8A3s2HO9z4apfIGZC7K+To7jXSTAhCaVWPCGrtJU9PJA0FELyw5zcEItIkP1ztT2ilpETFpvV+mSaVAua2Q==",
+  "dgSpecHash": "A+sQAT94jQItCs+fIs3VulqPoGzS62xg56cjdKbB44dtl9FDr8dvKZrCC3k92BDfRMOAkQyTjgLuVmSGcdFyBA==",
   "success": true,
   "projectFilePath": "C:\\Users\\0370102\\Desktop\\H24-4204W6-TP3-AlexisLazcano\\flappyBirbServer\\flappyBirbServer.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,9 @@
     "C:\\Users\\0370102\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\0370102\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.29\\microsoft.aspnetcore.cryptography.internal.6.0.29.nupkg.sha512",
+    "C:\\Users\\0370102\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.29\\microsoft.aspnetcore.cryptography.keyderivation.6.0.29.nupkg.sha512",
+    "C:\\Users\\0370102\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.29\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.29.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.build\\17.3.2\\microsoft.build.17.3.2.nupkg.sha512",
@@ -91,6 +94,8 @@
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.1\\microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\0370102\\.nuget\\packages\\microsoft.extensions.identity.core\\6.0.29\\microsoft.extensions.identity.core.6.0.29.nupkg.sha512",
+    "C:\\Users\\0370102\\.nuget\\packages\\microsoft.extensions.identity.stores\\6.0.29\\microsoft.extensions.identity.stores.6.0.29.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\0370102\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
