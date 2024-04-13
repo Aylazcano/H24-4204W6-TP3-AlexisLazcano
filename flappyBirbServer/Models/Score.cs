@@ -6,7 +6,7 @@
         public DateTime Date { get; set; }
         public int TimeInSeconds { get; set; }
         public int ScoreValue { get; set; }
-        public bool isPublic { get; set; }
+        public bool IsPublic { get; set; }
 
         // Propriétée de navigation
         public virtual BirbUser? BirbUser { get; set; }
