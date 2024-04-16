@@ -115,6 +115,7 @@ namespace flappyBirbServer.Controllers
                 score.BirbUser = user;
                 user.Scores.Add(score);
 
+                // On ajoute le score à la base de données
                 _context.Score.Add(score);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetScore", new { id = score.Id }, score);

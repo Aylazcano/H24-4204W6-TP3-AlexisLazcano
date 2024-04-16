@@ -28,6 +28,7 @@ export class PlayComponent implements OnInit, OnDestroy{
     this.scoreSent = false;
   }
 
+  // TODO
   sendScore(){
     if(this.scoreSent) return;
 
