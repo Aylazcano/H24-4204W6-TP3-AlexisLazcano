@@ -505,3 +505,5 @@ C:\Users\Alexi\OneDrive\Bureau\Aylazcano\H24-4204W6-TP3-AlexisLazcano\flappyBirb
 C:\Users\Alexi\OneDrive\Bureau\Aylazcano\H24-4204W6-TP3-AlexisLazcano\flappyBirbServer\obj\Debug\net6.0\flappyBirbServer.pdb
 C:\Users\Alexi\OneDrive\Bureau\Aylazcano\H24-4204W6-TP3-AlexisLazcano\flappyBirbServer\obj\Debug\net6.0\flappyBirbServer.genruntimeconfig.cache
 C:\Users\Alexi\OneDrive\Bureau\Aylazcano\H24-4204W6-TP3-AlexisLazcano\flappyBirbServer\obj\Debug\net6.0\ref\flappyBirbServer.dll
+C:\Users\Alexi\OneDrive\Bureau\Aylazcano\H24-4204W6-TP3-AlexisLazcano\flappyBirbServer\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Alexi\OneDrive\Bureau\Aylazcano\H24-4204W6-TP3-AlexisLazcano\flappyBirbServer\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
