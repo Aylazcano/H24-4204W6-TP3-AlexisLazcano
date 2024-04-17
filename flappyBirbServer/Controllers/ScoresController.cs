@@ -28,33 +28,49 @@ namespace flappyBirbServer.Controllers
         // GET: api/Scores/GetPublicScores
         [HttpGet]
         [Route("[action]")]
-        public async Task<ActionResult<IEnumerable<Score>>> GetPublicScores()
+        public async Task<ActionResult<IEnumerable<ScoreDTO>>> GetPublicScores()
         {
-            var publicScores = await _context.Score.Where(s => s.IsPublic).ToListAsync();
+            IEnumerable<Score> publicScores = await _context.Score.Where(s => s.IsPublic).ToListAsync();
             if (publicScores == null)
             {
                 return NotFound("No public scores found.");
             }
-            return publicScores;
+            return Ok(publicScores.Select(s => new ScoreDTO
+            {
+                Id = s.Id,
+                Pseudo = s.BirbUser?.UserName,
+                Date = s.Date,
+                TimeInSeconds = s.TimeInSeconds,
+                ScoreValue = s.ScoreValue,
+                IsPublic = s.IsPublic
+            }));
+
         }
 
         // GET: api/Scores/GetMyscores
         [Authorize]
         [HttpGet]
         [Route("[action]")]
-        public async Task<ActionResult<IEnumerable<Score>>> GetMyScores()
+        public async Task<ActionResult<IEnumerable<ScoreDTO>>> GetMyScores()
         {
-            if (_context.Score == null || !_context.Score.Any())
-            {
-                return NotFound("No scores found.");
-            }
-
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             BirbUser? user = await _context.Users.FindAsync(userId);
-
+            IEnumerable<Score> myScores = await _context.Score.Where(s => s.BirbUser == user).ToListAsync();
+            if (myScores == null)
+            {
+                return NotFound("No user scores found.");
+            }
             if (user != null)
             {
-                return user.Scores;
+                return Ok(myScores.Select(s => new ScoreDTO
+                {
+                    Id = s.Id,
+                    Pseudo = s.BirbUser?.UserName,
+                    Date = s.Date,
+                    TimeInSeconds = s.TimeInSeconds,
+                    ScoreValue = s.ScoreValue,
+                    IsPublic = s.IsPublic
+                }));
             }
 
             return StatusCode(StatusCodes.Status400BadRequest,
@@ -64,9 +80,9 @@ namespace flappyBirbServer.Controllers
         // PUT: api/Scores/ChangeScoreVisibility/{id}
         [Authorize]
         [HttpPut("[action]/{id}")]
-        public async Task<IActionResult> ChangeScoreVisibility(int id, Score score)
+        public async Task<IActionResult> ChangeScoreVisibility(int id, ScoreDTO scoreDTO)
         {
-            if (id != score.Id)
+            if (id != scoreDTO.Id)
             {
                 return BadRequest("The score ID in the request body does not match the one in the URL.");
             }
@@ -122,7 +138,7 @@ namespace flappyBirbServer.Controllers
                     IsPublic = scoreDTO.IsPublic,
                     BirbUser = user
                 };
-     
+
                 // On ajoute le score à l'utilisateur
                 user.Scores.Add(score);
 
