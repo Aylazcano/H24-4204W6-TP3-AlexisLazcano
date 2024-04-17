@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
   }
 
   async register(): Promise<void> {
-
     let registerDTO = new RegisterDTO(
       this.registerUsername,
       this.registerEmail,

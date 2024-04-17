@@ -100,12 +100,14 @@ namespace flappyBirbServer.Controllers
         // POST: api/Scores/PostScore
         [Authorize]
         [HttpPost("[action]")]
-        public async Task<ActionResult> PostScore(Score score)
+        public async Task<ActionResult<Score>> PostScore(Score score)
         {
             if (_context.Score == null)
             {
                 return Problem("Entity set 'FlappyBirbContext.Score' is null.");
             }
+
+            // Trouve l'utilisateur qui a envoyé la requête grace à son Token
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             BirbUser? user = await _context.Users.FindAsync(userId);
 
@@ -113,9 +115,11 @@ namespace flappyBirbServer.Controllers
             {
                 // Remplit les références de navigation
                 score.BirbUser = user;
+                score.Pseudo = user.UserName;
+                score.Date = DateTime.Now;
                 user.Scores.Add(score);
 
-                // On ajoute le score à la base de données
+                // On ajoute le score à la BD
                 _context.Score.Add(score);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetScore", new { id = score.Id }, score);

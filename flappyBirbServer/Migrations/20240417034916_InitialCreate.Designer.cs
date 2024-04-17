@@ -12,7 +12,7 @@ using flappyBirb_server.Data;
 namespace flappyBirbServer.Migrations
 {
     [DbContext(typeof(FlappyBirbContext))]
-    [Migration("20240416003404_InitialCreate")]
+    [Migration("20240417034916_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,6 +105,10 @@ namespace flappyBirbServer.Migrations
 
                     b.Property<bool>("IsPublic")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Pseudo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ScoreValue")
                         .HasColumnType("int");

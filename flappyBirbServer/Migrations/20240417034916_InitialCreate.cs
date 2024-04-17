@@ -160,6 +160,7 @@ namespace flappyBirbServer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Pseudo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TimeInSeconds = table.Column<int>(type: "int", nullable: false),
                     ScoreValue = table.Column<int>(type: "int", nullable: false),
