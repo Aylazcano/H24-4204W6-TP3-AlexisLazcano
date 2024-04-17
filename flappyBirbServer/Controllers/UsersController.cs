@@ -14,12 +14,12 @@ namespace flappyBirbServer.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class BirbUsersController : ControllerBase
+    public class UsersController : ControllerBase
     {
         readonly UserManager<BirbUser> _userManager;
         IConfiguration _configuration;
 
-        public BirbUsersController(UserManager<BirbUser> userManager, IConfiguration configuration)
+        public UsersController(UserManager<BirbUser> userManager, IConfiguration configuration)
         {
             this._userManager = userManager;
             this._configuration = configuration;

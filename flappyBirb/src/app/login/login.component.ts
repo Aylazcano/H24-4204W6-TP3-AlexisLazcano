@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     let loginDTO = new LoginDTO(this.loginUsername, this.loginPassword);
 
     try {
-      let x = await lastValueFrom(this.http.post<any>("https://localhost:7065" + "/api/BirbUsers/Login", loginDTO));
+      let x = await lastValueFrom(this.http.post<any>("https://localhost:7065/api/Users/Login", loginDTO));
       console.log(x);
       localStorage.setItem("token", x.token);
       // Redirection si la connexion a réussi :
@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
     } catch (e) {
       console.error("An error occurred during login:", e);
     }
-
   }
 
   async register(): Promise<void> {
@@ -50,7 +49,7 @@ export class LoginComponent implements OnInit {
       this.registerPasswordConfirm);
 
       try {
-        let x = await lastValueFrom(this.http.post<any>("https://localhost:7065/api/BirbUsers/Register", registerDTO));
+        let x = await lastValueFrom(this.http.post<any>("https://localhost:7065/api/Users/Register", registerDTO));
         console.log(x);
       } catch (e) {
         console.error("An error occurred during inscription :", e);
