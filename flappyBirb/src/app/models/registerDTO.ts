@@ -3,6 +3,6 @@ export class RegisterDTO {
         public username: string | null,
         public email: string | null,
         public password: string | null,
-        public passwordConfirm: string | null
+        public confirmPassword: string | null
     ) { }
 }

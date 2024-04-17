@@ -49,16 +49,7 @@ export class LoginComponent implements OnInit {
       this.registerPassword,
       this.registerPasswordConfirm);
 
-    try {
-      let x = await lastValueFrom(this.http.post<RegisterDTO>("https://localhost:7065/api/Users/Register", registerDTO));
-      console.log(x);
-    } catch (e) {
-      console.error("An error occurred during inscription :", e);
-    }
+    let x = await lastValueFrom(this.http.post<RegisterDTO>("https://localhost:7065/api/Users/Register", registerDTO));
+    console.log(x);
   }
-
-  logout() {
-    localStorage.removeItem("token");
-  }
-
 }
