@@ -42,21 +42,22 @@ export class LoginComponent implements OnInit {
   }
 
   async register(): Promise<void> {
+
     let registerDTO = new RegisterDTO(
       this.registerUsername,
       this.registerEmail,
       this.registerPassword,
       this.registerPasswordConfirm);
 
-      try {
-        let x = await lastValueFrom(this.http.post<any>("https://localhost:7065/api/Users/Register", registerDTO));
-        console.log(x);
-      } catch (e) {
-        console.error("An error occurred during inscription :", e);
-      }
+    try {
+      let x = await lastValueFrom(this.http.post<RegisterDTO>("https://localhost:7065/api/Users/Register", registerDTO));
+      console.log(x);
+    } catch (e) {
+      console.error("An error occurred during inscription :", e);
+    }
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem("token");
   }
 
