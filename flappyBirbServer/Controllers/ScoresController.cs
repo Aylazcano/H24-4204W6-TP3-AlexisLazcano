@@ -10,6 +10,7 @@ using flappyBirb_server.Models;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using flappyBirbServer.Models;
 
 namespace flappyBirbServer.Controllers
 {
@@ -30,7 +31,7 @@ namespace flappyBirbServer.Controllers
         public async Task<ActionResult<IEnumerable<Score>>> GetPublicScores()
         {
             var publicScores = await _context.Score.Where(s => s.IsPublic).ToListAsync();
-            if (publicScores == null || !publicScores.Any())
+            if (publicScores == null)
             {
                 return NotFound("No public scores found.");
             }
@@ -100,7 +101,7 @@ namespace flappyBirbServer.Controllers
         // POST: api/Scores/PostScore
         [Authorize]
         [HttpPost("[action]")]
-        public async Task<ActionResult<Score>> PostScore(Score score)
+        public async Task<ActionResult<Score>> PostScore(ScoreDTO scoreDTO)
         {
             if (_context.Score == null)
             {
@@ -113,10 +114,16 @@ namespace flappyBirbServer.Controllers
 
             if (user != null)
             {
-                // Remplit les références de navigation
-                score.BirbUser = user;
-                score.Pseudo = user.UserName;
-                score.Date = DateTime.Now;
+                Score score = new Score
+                {
+                    Date = DateTime.Now,
+                    TimeInSeconds = scoreDTO.TimeInSeconds,
+                    ScoreValue = scoreDTO.ScoreValue,
+                    IsPublic = scoreDTO.IsPublic,
+                    BirbUser = user
+                };
+     
+                // On ajoute le score à l'utilisateur
                 user.Scores.Add(score);
 
                 // On ajoute le score à la BD

@@ -14,10 +14,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    // let url: URL = new URL(request.url);
-    // console.log(url);
+    let url: URL = new URL(request.url);
+    console.log(url);
+    console.log(localStorage.getItem("token"));
 
-    if (request.url != ("https://localhost:7065/api/Users/Login" || "https://localhost:7065/api/Users/Register")) {
+    if ( request.url !== "https://localhost:7065/api/Users/Login" && request.url !== "https://localhost:7065/api/Users/Register") {
       request = request.clone({
         setHeaders: {
           'Content-Type': 'application/json',

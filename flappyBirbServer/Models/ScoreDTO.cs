@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+﻿using Microsoft.Build.Framework;
 
-namespace flappyBirb_server.Models
+namespace flappyBirbServer.Models
 {
-    public class Score
+    public class ScoreDTO
     {
         public int Id { get; set; }
+        [Required]
+        public string Pseudo { get; set; }
         [Required]
         public DateTime Date { get; set; }
         [Required]
@@ -14,9 +15,5 @@ namespace flappyBirb_server.Models
         public int ScoreValue { get; set; }
         [Required]
         public bool IsPublic { get; set; }
-
-        // Propriétée de navigation
-        [JsonIgnore]
-        public virtual BirbUser? BirbUser { get; set; }
     }
 }

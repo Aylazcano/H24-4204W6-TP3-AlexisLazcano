@@ -37,7 +37,7 @@ builder.Services.AddAuthentication(options =>
 }).AddJwtBearer(options =>
 {
     options.SaveToken = true;
-    options.RequireHttpsMetadata = false;  // TODO: À mettre à true quand on sort de l’environnement de développement et qu’on utilise un certificat TLS / SSL.
+    options.RequireHttpsMetadata = true;  // TODO: À mettre à true quand on sort de l’environnement de développement et qu’on utilise un certificat TLS / SSL.
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuer = true,
