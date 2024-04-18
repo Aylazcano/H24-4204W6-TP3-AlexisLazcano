@@ -43,8 +43,8 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidAudience = "http://localhost:4020", // Client --> HTTP
-        ValidIssuer = "https://localhost:7065/", // Serveur --> HTTPS
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Maitre des secret encode et decode ces donnees"))
+        ValidIssuer = "https://localhost:7065", // Serveur --> HTTPS
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Maitre des secrets encode et decode ces donnees"))
     };
 });
 // Configuration de la complexité du mot de passe et Email (Optionnel)

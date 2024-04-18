@@ -18,7 +18,7 @@ export class ScoreComponent implements OnInit {
 
   async ngOnInit() {
 
-    this.userIsConnected = sessionStorage.getItem("token") != null;
+    this.userIsConnected = localStorage.getItem("token") != null;
     if (this.userIsConnected) this.getMyScore();
     this.getPublicScore();
 
@@ -38,8 +38,9 @@ export class ScoreComponent implements OnInit {
   }
 
   async changeScoreVisibility(score: Score): Promise<void> {
-    await this.http.put("https://localhost:7065/api/Scores/ChangeScoreVisibility/${score.id}", null);
-    score.isPublic = !score.isPublic; // Mettre à jour localement la visibilité du score
+    let x = await lastValueFrom(this.http.put("https://localhost:7065/api/Scores/ChangeScoreVisibility/" + score.id, score));
+    console.log(x);
+    window.location.reload();
   }
 
 }

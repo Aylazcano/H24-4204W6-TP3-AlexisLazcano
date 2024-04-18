@@ -104,10 +104,6 @@ namespace flappyBirbServer.Migrations
                     b.Property<bool>("IsPublic")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Pseudo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ScoreValue")
                         .HasColumnType("int");
 

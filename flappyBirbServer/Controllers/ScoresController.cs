@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using flappyBirbServer.Models;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 
 namespace flappyBirbServer.Controllers
 {
@@ -30,7 +31,7 @@ namespace flappyBirbServer.Controllers
         [Route("[action]")]
         public async Task<ActionResult<IEnumerable<ScoreDTO>>> GetPublicScores()
         {
-            IEnumerable<Score> publicScores = await _context.Score.Where(s => s.IsPublic).ToListAsync();
+            IEnumerable<Score> publicScores = await _context.Score.Where(s => s.IsPublic == true).ToListAsync();
             if (publicScores == null)
             {
                 return NotFound("No public scores found.");
@@ -80,38 +81,41 @@ namespace flappyBirbServer.Controllers
         // PUT: api/Scores/ChangeScoreVisibility/{id}
         [Authorize]
         [HttpPut("[action]/{id}")]
-        public async Task<IActionResult> ChangeScoreVisibility(int id, ScoreDTO scoreDTO)
+        public async Task<IActionResult> ChangeScoreVisibility(ScoreDTO scoreDTO)
         {
-            if (id != scoreDTO.Id)
-            {
-                return BadRequest("The score ID in the request body does not match the one in the URL.");
-            }
+            // Trouve l'utilisateur qui a envoyé la requête grace à son Token
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            BirbUser? user = await _context.Users.FindAsync(userId);
 
-            var existingScore = await _context.Score.FindAsync(id);
+            Score existingScore = await _context.Score.FindAsync(scoreDTO.Id);
+
             if (existingScore == null)
             {
                 return NotFound("Score not found.");
             }
 
+            if (user == null || !user.Scores.Any(s => s.Id == existingScore.Id))
+            {
+                return Unauthorized(new { Message = "You are not allowed to change the visibility of this score." });
+            }
+
             existingScore.IsPublic = !existingScore.IsPublic;
+            _context.Entry(existingScore).State = EntityState.Modified;
 
-            try
-            {
+            //try
+            //{
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ScoreExists(id))
-                {
-                    return NotFound("Score not found.");
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (await _context.Score.FindAsync(scoreDTO.Id) == null)
+            //        return NotFound();
+            //    else
+            //        throw;
+            //}
 
-            return NoContent();
+
+            return Ok(existingScore);
         }
 
         // POST: api/Scores/PostScore
@@ -132,6 +136,7 @@ namespace flappyBirbServer.Controllers
             {
                 Score score = new Score
                 {
+                    Id = 0,
                     Date = DateTime.Now,
                     TimeInSeconds = scoreDTO.TimeInSeconds,
                     ScoreValue = scoreDTO.ScoreValue,
@@ -145,7 +150,7 @@ namespace flappyBirbServer.Controllers
                 // On ajoute le score à la BD
                 _context.Score.Add(score);
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetScore", new { id = score.Id }, score);
+                return Ok(score);
             }
 
             return StatusCode(StatusCodes.Status400BadRequest,

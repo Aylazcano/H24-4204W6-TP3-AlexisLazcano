@@ -53,7 +53,7 @@ export class PlayComponent implements OnInit, OnDestroy {
       0,
       null,
       null,
-      timeInSeconds,
+      parseInt(timeInSeconds),
       parseInt(scoreValue),
       true
     );
